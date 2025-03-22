@@ -126,3 +126,60 @@ c1 <-- c2 <-- c3 <-- c4 <-- c5 <-- c6
 
 which shows experiment will be two commits ahead of main br
 
+# add changes to existing git repo
+
+# first we need to point origin to git server address
+
+>> git remote add origin https://github.com/revanthpalla/git-commands.git
+
+>> git branch -M main ( rename master to main )
+
+>> git push -u origin main
+
+# to see all remotes
+
+>> git remote -v
+
+# to add a new remote
+
+>> git remote add <remote_name> <url>
+
+# so if we do >> git remote -v 
+
+# it will show list of urls aliased
+
+# concept of git fetch vs git pull
+
+git pull tries to automatically merge after fetching commits. It is context sensitive, 
+
+so all pulled commits will be merged into your currently active branch. 
+
+git pull automatically merges the commits without letting you review them first. 
+
+If you don’t carefully manage your branches, you may run into frequent conflicts.
+
+git fetch gathers any commits from the target branch that do not exist in the current branch 
+
+and stores them in your local repository. However, it does not merge them with your current branch. 
+
+This is particularly useful if you need to keep your repository up to date, but are working on something 
+
+that might break if you update your files. To integrate the commits into your current branch, 
+
+you must use git merge afterwards.
+
+
+working_dir         staging          local_repo              remote_repo
+
+                                       <----- git fetch --------|
+
+   <--------- git merge ---------------|
+
+   <---------------------- git pull ----------------------------|
+
+>> git fetch origin main or git fetch
+
+>> git merge origin/main  ( to ur current branch )
+
+>> git pull origin main
+
