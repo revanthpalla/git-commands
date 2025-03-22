@@ -1,0 +1,23 @@
+Vcs - version control systems
+
+Version control, also known as source control, is the practice of tracking and managing changes to software code. Version control systems are software tools that help software teams manage changes to source code over time. As development environments have accelerated, version control systems help software teams work faster and smarter. 
+
+Rollback to previous changes
+
+History of vcs:
+
+Local vcs - code changes are done in local system
+
+Centralised Vcs - 
+
+Only One server repo is present 
+
+All users access same server 
+
+Distributed vcs - 
+
+Programmers will copy entire central repository to local systems and make changes push back to server again
+
+
+Github - online repository
+

@@ -1,0 +1,128 @@
+# To configure user name
+
+>> git config --list
+
+>> git config --global user.name "revanthpalla"
+
+>> git config --global user.email "revanth4902@gmail.com"
+
+Three stage architecture of git:
+
+Medium: 
+https://medium.com/@ritusherke86/git-three-stage-architecture-2400d5cbfdfe
+
+short cut to open hidden files in a folder command + shift + period (.)
+
+>> git add . (to stage all files in current dir)
+
+>> git add <filename>
+
+>> git commit -m "<commit message>" to create a snapshot means version which means changes are tracked in local
+
+>> git rm --cached <file> # to unstage a file
+
+>> git log
+
+>> git log --pretty=oneline
+
+>> git commit --amend
+
+This option adds another level of functionality to the commit command. Passing this option will modify the last commit. Instead of creating a new commit, staged changes will be added to the previous commit.
+
+>> git diff # to show differences between last commit and local dir changes
+https://www.atlassian.com/git/tutorials/saving-changes/git-diff
+
+Life cycle of a file in git:
+
+                                       Tracked
+
+untracked     unmodified       modified        staged
+
+  |--------------- git add ------------------------>
+
+                  |----- edit file -> 
+
+			         |----  git add --->
+
+                   <----------- git commit --------|
+
+
+# to unstage a staged file
+
+>> git restore --staged <file> 
+
+With that in mind, here's what each of your commands does:
+
+git rm --cached file: removes the copy of the file from the index / staging-area, without touching the working tree copy. The proposed next commit now lacks the file. If the current commit has the file, and you do in fact make a next commit at this point, the difference between the previous commit and the new commit is that the file is gone.
+
+git restore --staged file: Git copies the file from the HEAD commit into the index, without touching the working tree copy. The index copy and the HEAD copy now match, whether or not they matched before. A new commit made now will have the same copy of the file as the current commit.
+
+If the current commit lacks the file, this has the effect of removing the file from the index. So in this case it does the same thing as git rm --cached.
+
+git reset file: this copies the HEAD version of the file to the index, just like git restore --staged file.
+
+Non Linear Development 
+
+Branches : 
+
+>> git branch
+
+>> git branch -v (more details on branch)
+
+>> git branch <branch_name> # to create a new branch
+
+>> git checkout -b <branch_name> # to create and checkout at same time
+
+>> git log --oneline --graph --all
+
+>> git branch -d <branch_name> # to delete a merged branch
+
+>> git branch -D <branch_name> # to delete a non merged branch
+
+Merging Techniques : 
+
+Suppose if you want to merge some branch lets say named hotfix to main branch
+
+First move to main
+
+>> git checkout main
+
+>> git merge hotfix
+
+# This is a conflicted text from branch ( Develop )
+
+Rebasing a branch :
+
+with rebase command you can pull all changes that are commited on on e branch and replay
+
+them in a different branch.
+
+suppose if you want to merge all changes in experiment br to main br using rebase
+
+then you need to switch to experiment br
+
+do git rebase main then it will append all changes of experiment to main last commit id
+
+main branch will be at same commit ( old one ) but experiment br wil move to recent commit id
+
+on top of main br commit id
+
+>> git rebase main  ( in experiment br )
+
+How git performs rebasing internally ?
+
+suppose 
+
+                  - <-- c5 <-- c6  ( experiment br )
+                 |
+c1 <-- c2 <-- c3 | <-- c4 ( main br )
+
+
+>> git rebase main
+
+c1 <-- c2 <-- c3 <-- c4 <-- c5 <-- c6
+
+                    (main)         (experiment)
+
+which shows experiment will be two commits ahead of main br
+
